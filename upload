@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# intially, use serial
+method="--port /dev/cu.usbserial -b 115200 --delay 0.1"
+# Once it's running and has acquired an ip address, try telnet:
+method="--ip 192.168.1.29:80"
+
+#Remove all existing software (wipe)
+#luatool $method -w --restart
+
+# Add and run test
+# luatool $method --src test.lua --dest test.lua --dofile 
+
+# Add init
+#luatool $method --src init.lua --dest init.lua
+#luatool $method --restart --src init.lua --dest init.lua
+
+# Add server
+luatool $method --src server.lua --dest server.lua --restart
